@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.synerzip.androidsocial">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- no other device should receive the gcm messages -->
+    <permission
+        android:name="com.example.synerzip.androidsocial.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" /> <!-- our package is d only one who ll receive notification -->
+
+    <uses-permission android:name="com.example.synerzip.androidsocial.permission.C2D_MESSAGE" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <!-- Google play services meta dat -->
+        <!-- or add as play-services -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- GCM broadcast receiver -->
+        <receiver
+            android:name=".MyGcmBroadcastReceiver"
+            android:permission="com.android.google.permission.c2dm.intent.SEND">
+            <intent-filter>
+                <action android:name="com.android.google.permission.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.example.synerzip.androidsocial" />
+            </intent-filter>
+        </receiver>
+
+        <!-- GCM intent service -->
+        <service android:name=".MyGcmIntentService" />
+
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".WhatsAppActivity" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider337515223283313"
+            android:exported="true" />
+
+        <activity android:name=".TwitterActivity" />
+        <activity android:name=".TwitterWebView" />
+        <activity android:name=".GoogleActivity" />
+        <activity android:name=".GCMActivity" />
+        <activity android:name=".GooglePlacesActivity" />
+        <activity android:name=".AqueryActivity" />
+        <activity android:name=".LocationActivity"></activity>
+    </application>
+
+</manifest>
