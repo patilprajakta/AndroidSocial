@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">AndroidSocial</string>
+
+    <string name="facebook_app_id">337515223283313</string>
+
+    <string name="twitter_callback">http://www.learn2crack.com</string>
+    <string name="twitter_oauth_verifier">aouth_verifier</string>
+    <string name="consumer_key">4FRVSGrwdvtjTzW96XtZxgQgp</string>
+    <string name="consumer_secret">LXUdlRySzWLophpR975Ii0HRLiZmLXahp6L55EKNgkPw48QMzL</string>
+    <string name="callback_url">http://www.learn2crack.com</string>
+    <string name="oauth_verifier"></string>
+
+    <string name="gcm_sender_key">355290165816</string>
+    <string name="gcm_server_api_key">AIzaSyDOE-_dus8yXmR_Qtb3q5qDCp3qP1D2CHQ</string>
+
+</resources>

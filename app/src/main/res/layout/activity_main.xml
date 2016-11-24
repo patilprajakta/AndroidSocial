@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.example.synerzip.androidsocial.MainActivity">
+
+    <Button
+        android:background="#AED6F1"
+        android:layout_margin="5dp"
+        android:id="@+id/buttonFb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Facebook Integration" />
+
+    <Button
+        android:background="#F9E79F"
+        android:layout_margin="5dp"
+        android:id="@+id/buttonTwitter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Twitter Integration" />
+
+
+    <Button
+        android:background="#ABEBC6"
+
+        android:layout_margin="5dp"
+        android:id="@+id/buttonWhtsapp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Whatsapp Integration" />
+
+
+    <Button
+        android:layout_margin="5dp"
+        android:background="#AED6F1"
+        android:id="@+id/buttonGoogle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Google Play Services" />
+
+    <Button
+        android:layout_margin="5dp"
+        android:background="#F9E79F"
+        android:id="@+id/buttonGCM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Google Cloud Messaging " />
+    <Button
+
+android:layout_margin="5dp"
+        android:background="#ABEBC6"
+        android:id="@+id/buttonAquery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aquery " />
+
+
+</LinearLayout>
