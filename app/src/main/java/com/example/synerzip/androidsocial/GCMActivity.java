@@ -42,7 +42,6 @@ public class GCMActivity extends AppCompatActivity {
         preferences=getGcmPreferences(getApplicationContext());
         SENDER_ID=getString(R.string.gcm_sender_key);
 
-
         btnReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +64,7 @@ public class GCMActivity extends AppCompatActivity {
             }
 
         }else{
-            Log.v(TAG,"Play services are not available");
+            Log.v(TAG,"Google Play services are not available");
         }
 
     }
@@ -168,10 +167,7 @@ Log.v(TAG,"Device not registered");
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-
-
         return Integer.MIN_VALUE;
-
     }
 
     //method to check google play services

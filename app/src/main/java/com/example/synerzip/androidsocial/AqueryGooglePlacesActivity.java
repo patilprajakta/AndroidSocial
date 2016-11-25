@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * Created by Prajakta Patil on 21/11/16.
  */
 
-public class GooglePlacesActivity extends AppCompatActivity{
+public class AqueryGooglePlacesActivity extends AppCompatActivity{
 
     private static final String TAG = "placesdemo";
 
@@ -60,7 +60,7 @@ public class GooglePlacesActivity extends AppCompatActivity{
         url="https://maps.googleapis.com/maps/api/place/search/json?location="
 
                 //chnage the radius to get more hotels
-                + latitude + "," + longtitude + "&radius=200&sensor=true&key=" + google_key;
+                + latitude + "," + longtitude + "&radius=300&sensor=true&key=" + google_key;
 
     /*url="https://itunes.apple.com/search?term=a+r+rehman";*/
 
@@ -76,7 +76,7 @@ public class GooglePlacesActivity extends AppCompatActivity{
                 if(object!=null)
                     parseResults(object);
                 else
-                    Toast.makeText(GooglePlacesActivity.this,"Unable to fetch data",Toast.LENGTH_LONG).show();
+                    Toast.makeText(AqueryGooglePlacesActivity.this,"Unable to fetch data",Toast.LENGTH_LONG).show();
             }
         });
 

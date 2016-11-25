@@ -51,8 +51,6 @@ public class WhatsAppActivity extends AppCompatActivity{
     public void whatsapp(View view){
         PackageManager packageManager=getPackageManager();
         try {
-
-
             PackageInfo packageInfo=packageManager.getPackageInfo("com.whatsapp",PackageManager.GET_META_DATA);
 
             Toast.makeText(this,"WhatsApp Installed",Toast.LENGTH_LONG).show();
@@ -82,13 +80,6 @@ public class WhatsAppActivity extends AppCompatActivity{
             //send to particular number
            //Intent intent=new Intent(Intent.ACTION_SENDTO,Uri.parse(new StringBuilder().append("+919421528289").toString()));
 
-//Intent intent = new Intent("android.intent.action.MAIN");
-// intent.setComponent(new ComponentName("com.whatsapp","com.whatsapp.Conversation"));
-
-            //intent.putExtra(Intent.EXTRA_TEXT, PhoneNumberUtils.stripSeparators("919421528289")+"@s.whatsapp.net");
-
-            //intent.putExtra("sms_body",PhoneNumberUtils.stripSeparators("919421528289")+"@s.whatsapp.net");
-        //    intent.putExtra(Intent.EXTRA_TEXT,"hiiii");
             intent.putExtra(Intent.EXTRA_TEXT,editText.getText().toString());
             intent.setType("text/plain");
             intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
@@ -96,18 +87,18 @@ public class WhatsAppActivity extends AppCompatActivity{
             intent.setPackage("com.whatsapp");
             startActivity(intent);
 
-         /*   Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse("content://com.android.contacts/data/" + .getString(0)));
-            i.setType("text/plain");
-            i.setPackage("com.whatsapp");           // so that only Whatsapp reacts and not the chooser
-            i.putExtra(Intent.EXTRA_SUBJECT, "Subject");
-            i.putExtra(Intent.EXTRA_TEXT, "I'm the body.");
-            startActivity(i);*/
-
-
         } catch (PackageManager.NameNotFoundException e) {
 
             Toast.makeText(this,"WhatsApp NOT Installed",Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+
     }
 }

@@ -61,7 +61,7 @@
         <!-- GCM intent service -->
         <service android:name=".MyGcmIntentService" />
 
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".FacebookActivity" />
         <activity android:name=".WhatsAppActivity" />
 
         <provider
@@ -73,9 +73,13 @@
         <activity android:name=".TwitterWebView" />
         <activity android:name=".GoogleActivity" />
         <activity android:name=".GCMActivity" />
-        <activity android:name=".GooglePlacesActivity" />
+        <activity android:name=".AqueryGooglePlacesActivity" />
         <activity android:name=".AqueryActivity" />
-        <activity android:name=".LocationActivity"></activity>
+        <activity android:name=".LocationActivity" />
+        <activity android:name=".AueryAndGoogleActivity" />
+        <activity android:name=".PreferenceSettingActivity" />
+        <activity android:name=".PreferenceActivity" />
+        <activity android:name=".PrefTasksActivity"></activity>
     </application>
 
 </manifest>

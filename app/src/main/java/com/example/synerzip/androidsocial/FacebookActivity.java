@@ -44,12 +44,12 @@ import java.util.Arrays;
  * Created by Prajakta Patil on 11/11/16.
  */
 
-public class LoginActivity extends AppCompatActivity {
+public class FacebookActivity extends AppCompatActivity {
     public TextView textView;
 
     public CallbackManager mCallbackManager;
 
-    // public LoginManager loginManager;
+     public LoginManager loginManager;
 
     public LoginButton mLoginButton;
     public ProfileTracker mProfilrTracker;
@@ -169,7 +169,7 @@ public class LoginActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(this);
         mCallbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_login);
-
+        loginManager=LoginManager.getInstance();
         aquery = new AQuery(this);
         shareDialog = new ShareDialog(this);
 
@@ -401,6 +401,12 @@ public class LoginActivity extends AppCompatActivity {
         mAccesstokenTracker.stopTracking();
         mProfilrTracker.stopTracking();
         profilePictureView.clearFocus();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        loginManager.logOut();
     }
 }
 
