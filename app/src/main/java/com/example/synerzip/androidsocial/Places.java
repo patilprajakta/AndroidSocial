@@ -7,11 +7,11 @@ package com.example.synerzip.androidsocial;
 public class Places {
 
     String title,description,url;
-    Places(String t,String d,String u)
+    Places(String title,String description,String url)
     {
-        title=t;
-        description=d;
-        url=u;
+        this.title =title;
+        this.description =description;
+        this.url =url;
     }
 
 }

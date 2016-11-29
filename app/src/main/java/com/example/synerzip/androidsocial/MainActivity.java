@@ -10,25 +10,25 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     Button btnFb;
-    Button btnWhatsApp, btnTwitter, btnGoogle, btnGCM, btnAquery,btnPreferences;
+    Button btnWhatsApp, btnTwitter, btnGoogle, btnGCM, btnAquery, btnPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnFb=(Button)findViewById(R.id.buttonFb);
-        btnWhatsApp=(Button)findViewById(R.id.buttonWhtsapp);
-        btnTwitter=(Button)findViewById(R.id.buttonTwitter);
-        btnGoogle=(Button)findViewById(R.id.buttonGoogle);
-        btnGCM=(Button)findViewById(R.id.buttonGCM);
-        btnAquery=(Button)findViewById(R.id.buttonAquery);
-        btnPreferences=(Button)findViewById(R.id.buttonPref);
+        btnFb = (Button) findViewById(R.id.buttonFb);
+        btnWhatsApp = (Button) findViewById(R.id.buttonWhtsapp);
+        btnTwitter = (Button) findViewById(R.id.buttonTwitter);
+        btnGoogle = (Button) findViewById(R.id.buttonGoogle);
+        btnGCM = (Button) findViewById(R.id.buttonGCM);
+        btnAquery = (Button) findViewById(R.id.buttonAquery);
+        btnPreferences = (Button) findViewById(R.id.buttonPref);
 
         btnFb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,FacebookActivity.class);
+                Intent intent = new Intent(MainActivity.this, FacebookActivity.class);
                 startActivity(intent);
             }
         });
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         btnWhatsApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,WhatsAppActivity.class);
+                Intent intent = new Intent(MainActivity.this, WhatsAppActivity.class);
                 startActivity(intent);
             }
         });
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         btnTwitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,TwitterActivity.class);
+                Intent intent = new Intent(MainActivity.this, TwitterActivity.class);
                 startActivity(intent);
             }
         });
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         btnGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,GoogleActivity.class);
+                Intent intent = new Intent(MainActivity.this, GoogleActivity.class);
                 startActivity(intent);
             }
         });
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         btnGCM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,GCMActivity.class);
+                Intent intent = new Intent(MainActivity.this, GCMActivity.class);
                 startActivity(intent);
             }
         });
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         btnAquery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,AueryAndGoogleActivity.class);
+                Intent intent = new Intent(MainActivity.this, AueryAndGoogleActivity.class);
                 startActivity(intent);
             }
         });
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         btnPreferences.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this, PrefTasksActivity.class);
+                Intent intent = new Intent(MainActivity.this, PrefTasksActivity.class);
                 startActivity(intent);
             }
         });

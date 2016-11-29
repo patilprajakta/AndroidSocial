@@ -16,9 +16,6 @@ public class PreferenceSettingActivity extends PreferenceActivity {
 
         //all activities are stored for this app
         //adding preferences to tha app using below method
-
         addPreferencesFromResource(R.xml.settings);
-
     }
-
 }

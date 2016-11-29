@@ -26,18 +26,19 @@ import java.io.IOException;
 /**
  * Created by Prajakta Patil on 15/11/16.
  */
-public class WhatsAppActivity extends AppCompatActivity{
+public class WhatsAppActivity extends AppCompatActivity {
 
     EditText editText;
     Button button;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_whatsapp);
 
-        button=(Button)findViewById(R.id.btnSend);
-        editText=(EditText)findViewById(R.id.editTxt);
+        button = (Button) findViewById(R.id.btnSend);
+        editText = (EditText) findViewById(R.id.editTxt);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,39 +49,39 @@ public class WhatsAppActivity extends AppCompatActivity{
 
     }
 
-    public void whatsapp(View view){
-        PackageManager packageManager=getPackageManager();
+    public void whatsapp(View view) {
+        PackageManager packageManager = getPackageManager();
         try {
-            PackageInfo packageInfo=packageManager.getPackageInfo("com.whatsapp",PackageManager.GET_META_DATA);
+            PackageInfo packageInfo = packageManager.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
 
-            Toast.makeText(this,"WhatsApp Installed",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "WhatsApp Installed", Toast.LENGTH_LONG).show();
 
-            Bitmap bitmap= BitmapFactory.decodeResource(getResources(),R.drawable.whatsappimage);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.whatsappimage);
 
-            ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
-            bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
 
 
-            File file=new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"whatsapp.jpeg");
+            File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "whatsapp.jpeg");
 
             try {
-            file.createNewFile();
-            FileOutputStream fos=new FileOutputStream(file);
+                file.createNewFile();
+                FileOutputStream fos = new FileOutputStream(file);
 
                 fos.write(byteArrayOutputStream.toByteArray());
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.d("error",e.toString());
+                Log.d("error", e.toString());
             }
 
             //broadcast to all n den choose one too send
-            Intent intent=new Intent(Intent.ACTION_SEND);
+            Intent intent = new Intent(Intent.ACTION_SEND);
 
             //send to particular number
-           //Intent intent=new Intent(Intent.ACTION_SENDTO,Uri.parse(new StringBuilder().append("+919421528289").toString()));
+            //Intent intent=new Intent(Intent.ACTION_SENDTO,Uri.parse(new StringBuilder().append("+919421528289").toString()));
 
-            intent.putExtra(Intent.EXTRA_TEXT,editText.getText().toString());
+            intent.putExtra(Intent.EXTRA_TEXT, editText.getText().toString());
             intent.setType("text/plain");
             intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
             intent.setType("image/jpeg");
@@ -89,7 +90,7 @@ public class WhatsAppActivity extends AppCompatActivity{
 
         } catch (PackageManager.NameNotFoundException e) {
 
-            Toast.makeText(this,"WhatsApp NOT Installed",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "WhatsApp NOT Installed", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
@@ -97,7 +98,6 @@ public class WhatsAppActivity extends AppCompatActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
 
 
     }

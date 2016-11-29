@@ -49,7 +49,7 @@ public class FacebookActivity extends AppCompatActivity {
 
     public CallbackManager mCallbackManager;
 
-     public LoginManager loginManager;
+    public LoginManager loginManager;
 
     public LoginButton mLoginButton;
     public ProfileTracker mProfilrTracker;
@@ -157,19 +157,13 @@ public class FacebookActivity extends AppCompatActivity {
         }
     };
 
-/*    public void share(View view){
-
-        if(view==btnShareLink){
-            shareToFacebook();
-        }*/
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(this);
         mCallbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_login);
-        loginManager=LoginManager.getInstance();
+        loginManager = LoginManager.getInstance();
         aquery = new AQuery(this);
         shareDialog = new ShareDialog(this);
 
@@ -224,18 +218,6 @@ public class FacebookActivity extends AppCompatActivity {
                 btnShareImage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-                        /*    Bitmap image = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-                            SharePhoto photo = new SharePhoto.Builder()
-                                    .setBitmap(image)
-                                    .setCaption("Share Image")
-                                    .build();
-
-                            SharePhotoContent content = new SharePhotoContent.Builder()
-                                    .addPhoto(photo)
-                                    .build();
-                            ShareApi.share(content, null);*/
-
                         Bitmap image = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
                         SharePhoto photo = new SharePhoto.Builder()
                                 .setBitmap(image)
@@ -244,7 +226,7 @@ public class FacebookActivity extends AppCompatActivity {
                                 .addPhoto(photo)
                                 .build();
 
-                        ShareApi.share(content,null);
+                        ShareApi.share(content, null);
 
                     }
                 });
@@ -289,7 +271,6 @@ public class FacebookActivity extends AppCompatActivity {
 
                     if (uri != null) {
                         //   Picasso.with(getApplicationContext()).load(uri).into(imageView);
-
                         aquery.id(imageView).image(uri);
                     } else {
                         return;
@@ -302,15 +283,13 @@ public class FacebookActivity extends AppCompatActivity {
 
                     if (uri != null) {
                         //   Picasso.with(getApplicationContext()).load(uri).into(imageView);
-
                         aquery.id(imageView).image(uri);
                     } else {
                         return;
                     }
 
                 }
-                //profilePictureView.setProfileId(String.valueOf(currentProfile.getProfilePictureUri(100,100)));
-//                profilePictureView.setProfileId(String.valueOf(currentProfile.getProfilePictureUri(100,100)));
+
             }
         };
     }
@@ -365,6 +344,8 @@ public class FacebookActivity extends AppCompatActivity {
             }
         }
 
+        //TODO commented code is for future changes
+
        /* String url=String.valueOf(profile.getProfilePictureUri(100, 100));
 
         if(url!=null) {
@@ -378,7 +359,6 @@ public class FacebookActivity extends AppCompatActivity {
             stringBuffer.append("Welcome " + profile.getName());
 
             //   stringBuffer.append("profilepicture" + profile.getProfilePictureUri(100, 100));
-
             //   new DownloadImage((ImageView)findViewById(R.id.profileImage)).execute(String.valueOf(profile.getProfilePictureUri(100, 100)));
 
      /*       Uri uri = null;

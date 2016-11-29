@@ -12,18 +12,21 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
  * Created by Prajakta Patil on 21/11/16.
  */
 
-public class AqueryGooglePlacesActivity extends AppCompatActivity{
+public class AqueryGooglePlacesActivity extends AppCompatActivity {
 
     private static final String TAG = "placesdemo";
 
@@ -44,12 +47,12 @@ public class AqueryGooglePlacesActivity extends AppCompatActivity{
 
         listView = (ListView) findViewById(R.id.listView);
 
-        google_key=getString(R.string.gcm_server_api_key);
+        google_key = getString(R.string.gcm_server_api_key);
 
-        aquery=new AQuery(this);
-        placesArray =new ArrayList<>();
+        aquery = new AQuery(this);
+        placesArray = new ArrayList<>();
 
-        progressDialog =new ProgressDialog(this);
+        progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Fetching Data...");
         progressDialog.setMessage("Please Wait..");
         progressDialog.setIndeterminate(true);
@@ -57,7 +60,7 @@ public class AqueryGooglePlacesActivity extends AppCompatActivity{
 
 //url for json
 ///https://maps.googleapis.com/maps/api/place/search/json?location=&radius=100&sensor=true&key=AIzaSyDOE-_dus8yXmR_Qtb3q5qDCp3qP1D2CHQ
-        url="https://maps.googleapis.com/maps/api/place/search/json?location="
+        url = "https://maps.googleapis.com/maps/api/place/search/json?location="
 
                 //chnage the radius to get more hotels
                 + latitude + "," + longtitude + "&radius=300&sensor=true&key=" + google_key;
@@ -67,16 +70,15 @@ public class AqueryGooglePlacesActivity extends AppCompatActivity{
     }
 
     //get data from url
-    public void getData(View v)
-    {
-        aquery.progress(progressDialog).ajax(url,JSONObject.class,new AjaxCallback<JSONObject>(){
+    public void getData(View v) {
+        aquery.progress(progressDialog).ajax(url, JSONObject.class, new AjaxCallback<JSONObject>() {
 
             @Override
             public void callback(String url, JSONObject object, AjaxStatus status) {
-                if(object!=null)
+                if (object != null)
                     parseResults(object);
                 else
-                    Toast.makeText(AqueryGooglePlacesActivity.this,"Unable to fetch data",Toast.LENGTH_LONG).show();
+                    Toast.makeText(AqueryGooglePlacesActivity.this, "Unable to fetch data", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -84,20 +86,17 @@ public class AqueryGooglePlacesActivity extends AppCompatActivity{
 
     //method to parse the url
 
-    public void parseResults(JSONObject object)
-    {
-        placesArray =parsedata(object);
+    public void parseResults(JSONObject object) {
+        placesArray = parsedata(object);
         //ArrayAdapter<String> aa=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,data);
-        MyAdapter myAdapter=new MyAdapter();
+        MyAdapter myAdapter = new MyAdapter();
         listView.setAdapter(myAdapter);
-
     }
 
     /**
      * Custom Adapter
      */
-    class MyAdapter extends BaseAdapter
-    {
+    class MyAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
@@ -118,18 +117,16 @@ public class AqueryGooglePlacesActivity extends AppCompatActivity{
         public View getView(int position, View convertView, ViewGroup parent) {
 
             MyViewHolder myViewHolder;
-            if(convertView==null)
-            {
-                LayoutInflater lf=(LayoutInflater)parent.getContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-                convertView=lf.inflate(R.layout.placesdemorow,parent,false);
-                TextView txtTitle= (TextView) convertView.findViewById(R.id.title);
-                TextView txtAddress= (TextView) convertView.findViewById(R.id.address);
-                ImageView imageView=(ImageView)convertView.findViewById(R.id.imageViewstore);
-                myViewHolder=new MyViewHolder(txtTitle,txtAddress,imageView);
+            if (convertView == null) {
+                LayoutInflater lf = (LayoutInflater) parent.getContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                convertView = lf.inflate(R.layout.placesdemorow, parent, false);
+                TextView txtTitle = (TextView) convertView.findViewById(R.id.title);
+                TextView txtAddress = (TextView) convertView.findViewById(R.id.address);
+                ImageView imageView = (ImageView) convertView.findViewById(R.id.imageViewstore);
+                myViewHolder = new MyViewHolder(txtTitle, txtAddress, imageView);
                 convertView.setTag(myViewHolder);
-            }
-            else
-                myViewHolder=(MyViewHolder)convertView.getTag();
+            } else
+                myViewHolder = (MyViewHolder) convertView.getTag();
 
             myViewHolder.titlep.setText(placesArray.get(position).title);
             myViewHolder.descp.setText(placesArray.get(position).description);
@@ -137,59 +134,56 @@ public class AqueryGooglePlacesActivity extends AppCompatActivity{
 
                     //get the image from json array
                     .image("https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&photoreference="
-                            + placesArray.get(position).url+"&key="+google_key);
+                            + placesArray.get(position).url + "&key=" + google_key);
 
             return convertView;
 
         }
         //view holder class
 
-        public class MyViewHolder
-        {
-            TextView titlep,descp;
+        public class MyViewHolder {
+            TextView titlep, descp;
             ImageView iv;
-            MyViewHolder(TextView t, TextView v, ImageView i)
-            {
-                titlep=t;
-                descp=v;
-                iv=i;
+
+            MyViewHolder(TextView t, TextView v, ImageView i) {
+                titlep = t;
+                descp = v;
+                iv = i;
             }
         }
     }
-//parse data for arraylist
-    public ArrayList parsedata(JSONObject data)
-    {
-        ArrayList<Places> temp=new ArrayList<>();
-        if(data.has("results"))
-        {
+
+    //parse data for arraylist
+    public ArrayList parsedata(JSONObject data) {
+        ArrayList<Places> temp = new ArrayList<>();
+        if (data.has("results")) {
             try {
-                JSONArray arr=data.getJSONArray("results");
-                for(int i=0;i<arr.length();++i)
-                {
-                    String name=arr.getJSONObject(i).getString("name");
-                    String area=arr.getJSONObject(i).getString("vicinity");
-                    String lat=arr.getJSONObject(i).getJSONObject("geometry").getJSONObject("location")
+                JSONArray arr = data.getJSONArray("results");
+                for (int i = 0; i < arr.length(); ++i) {
+                    String name = arr.getJSONObject(i).getString("name");
+                    String area = arr.getJSONObject(i).getString("vicinity");
+                    String lat = arr.getJSONObject(i).getJSONObject("geometry").getJSONObject("location")
                             .getString("lat");
-                    String lng=arr.getJSONObject(i).getJSONObject("geometry").getJSONObject("location")
+                    String lng = arr.getJSONObject(i).getJSONObject("geometry").getJSONObject("location")
                             .getString("lng");
 
                     //not all array have photo thats why first get th ejson obj n check
-                    JSONObject jsonObject=arr.getJSONObject(i);
-                    String url="";
-                    if(jsonObject.has("photos")) {
+                    JSONObject jsonObject = arr.getJSONObject(i);
+                    String url = "";
+                    if (jsonObject.has("photos")) {
                         url = jsonObject.getJSONArray("photos").getJSONObject(0).getString("photo_reference");
                     }
-                    Places places=new Places(name,area,url);
+                    Places places = new Places(name, area, url);
                     temp.add(places);
                 }
 
             } catch (Exception e) {
-                Log.v(TAG,e.toString());
-                Toast.makeText(this,"error"+e.toString(),Toast.LENGTH_LONG).show();
-            }//end of catch
-        }//end of if
+                Log.v(TAG, e.toString());
+                Toast.makeText(this, "error" + e.toString(), Toast.LENGTH_LONG).show();
+            }
+        }
         return temp;
-    }//end of parsedata
+    }
 
 }
 

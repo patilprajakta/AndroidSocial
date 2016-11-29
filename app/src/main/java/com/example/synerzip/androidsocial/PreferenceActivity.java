@@ -13,7 +13,7 @@ import android.widget.TextView;
  * Created by Prajakta Patil on 25/11/16.
  */
 
-public class PreferenceActivity extends AppCompatActivity{
+public class PreferenceActivity extends AppCompatActivity {
 
     private static final int RESULT_SETTINGS = 1;
 

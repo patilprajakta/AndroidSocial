@@ -24,28 +24,30 @@ public class AqueryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aquery);
 
-        aQuery=new AQuery(this);
-//if view ids are wrong it ll juz ignore without giving error
-        aQuery.id(R.id.btnText).clicked(this,"clickhandle");
+        aQuery = new AQuery(this);
+        //if view ids are wrong it ll juz ignore without giving error
+        aQuery.id(R.id.btnText).clicked(this, "clickhandle");
     }
 
-    public void clickhandle(View view){
-
+    /**
+     * Aquery method for handling click
+     *
+     * @param view
+     */
+    public void clickhandle(View view) {
         //download my facebook profile pic
-        String url="https://graph.facebook.com/532119700319799/picture?height=200&width=200&migration_overrides=%7Boctober_2012%3Atrue%7D";
-
-        ProgressDialog progressDialog=new ProgressDialog(this);
+        String url = "https://graph.facebook.com/532119700319799/picture?height=200&width=200&migration_overrides=%7Boctober_2012%3Atrue%7D";
+        ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Downloading Image...");
         aQuery.id(R.id.btnText).text("Aquery Text").backgroundColor(Color.CYAN).textColor(Color.RED);
-        aQuery.id(R.id.imageview).progress(progressDialog).image(url,true,true,0,0,null,AQuery.FADE_IN);
+        aQuery.id(R.id.imageview).progress(progressDialog).image(url, true, true, 0, 0, null, AQuery.FADE_IN);
 
-        File file=new File(Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator+"myFiles/myImage.jpeg");
-
-        if(!file.exists()){
+        //save to internal storage
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "myFiles/myImage.jpeg");
+        if (!file.exists()) {
             file.mkdir();
 
-            aQuery.download(url,file,new AjaxCallback<File>()
-            {
+            aQuery.download(url, file, new AjaxCallback<File>() {
                 @Override
                 public void callback(String url, File object, AjaxStatus status) {
                     super.callback(url, object, status);
@@ -54,13 +56,10 @@ public class AqueryActivity extends AppCompatActivity {
                 }
             });
         }
-
     }
 
     private void handleFile(File object) {
-
-        Toast.makeText(this,"Got File :"+object.getAbsolutePath().toString(),Toast.LENGTH_LONG).show();
-
+        Toast.makeText(this, "Got File :" + object.getAbsolutePath().toString(), Toast.LENGTH_LONG).show();
     }
 
 }
